@@ -3,11 +3,12 @@
 {% block title %}
 HOME
 {% endblock title %}
-
-{% block content %}<h1>Home Page</h1>
-{% if user.is_authenticated %}
-<h3>Hello, {{ user.username }}</h3>
-{% else %}
-<h3>Log in</h3>
-{% endif %}
+<div class="container">
+    {% block content %}<h1>Home Page</h1>
+    {% if user.is_authenticated %}
+    <h3>Hello, {{ user.username }}</h3>
+    {% else %}
+    <h3>Log in</h3>
+    {% endif %}
+</div>
 {% endblock content %}

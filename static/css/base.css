@@ -1,14 +1,19 @@
 body{
+    background-color: rgb(130, 160, 130);
     padding-left: 30px;
 }
 h1{
-    color:darkblue !important;
-    font-size: 23px;
+    color:darkblue;
 }
 p{
     font-weight: 700;
     color: orange;
 }
-.card{
+div.card{
+    background-color: rgb(231, 231, 168)!important;
     border: 4px solid black !important;
+}
+
+h2{
+    color: red;
 }

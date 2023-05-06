@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<h2>You have Logged Out</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p  }}
+</form>
+{% endblock content %}

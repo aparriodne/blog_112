@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+(403)
+{% endblock title %}
+
+
+{% block content %}
+<h2>Forbbiden (403)</h2>
+<p>You are nit authorized to make changes to this page</p>
+<p><a href="{% url 'home' %}">Click here</a> to go home</p>
+{% endblock content %}

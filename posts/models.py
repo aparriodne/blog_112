@@ -18,7 +18,7 @@ class Post(models.Model):
         on_delete=models.CASCADE
     )
     body = models.TextField()
-    creat_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
     status = models.ForeignKey(
         Status,
         on_delete=models.CASCADE,

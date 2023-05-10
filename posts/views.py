@@ -22,10 +22,10 @@ class PostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        published_status = Status.objects.get(name="publisher")
+        published_status = Status.objects.get(name="published")
         context["post_list"] = Post.objects.filter(
             status=published_status
-        ).order_by("creat_on").reverse()
+        ).order_by("created_on").reverse()
         return context
 
 class DraftPostListView(LoginRequiredMixin, ListView):
@@ -39,7 +39,7 @@ class DraftPostListView(LoginRequiredMixin, ListView):
             status=draft_status
         ).filter(
             author=self.request.user
-            ).order_by("creat_on").reverse()
+            ).order_by("created_on").reverse()
         return context
     
 class ArchivePostListView(LoginRequiredMixin, ListView):
@@ -48,15 +48,11 @@ class ArchivePostListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        archive_status = Status.objects.get(name="archive")
+        archive_status = Status.objects.get(name="archived")
         context["post_list"] = Post.objects.filter(
             status=archive_status
-        ).filter(
-            author=self.request.user
-            ).order_by("creat_on").reverse()
+            ).order_by("created_on").reverse()
         return context
-
-
 
 class PostDetailView(DetailView):
     template_name = 'posts/detail.html'
@@ -65,11 +61,11 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'posts/new.html'
     model = Post
-    fields = ['title','subtitle','body']
+    fields = ['title','subtitle','body', 'status']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        draft_status = Status.object.get(name="draft")
+        draft_status = Status.objects.get(name="draft")
         form.instance.status = draft_status
         return super().form_valid(form)
 

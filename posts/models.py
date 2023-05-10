@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
+class Status(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
+
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=133)
@@ -12,6 +19,11 @@ class Post(models.Model):
     )
     body = models.TextField()
     creat_on = models.DateTimeField(auto_now_add=True)
+    status = models.ForeignKey(
+        Status,
+        on_delete=models.CASCADE,
+        null=True, default=None
+    )
 
     def __str__(self):
         return self.title
